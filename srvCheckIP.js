@@ -9,7 +9,7 @@ http.createServer(function(req,res){
     var t = url.parse(req.url,true).query.t;
     console.log("expected addr:%s",t);
     if(addr == t){
-	ano=false;
+	ano=true;
     }
     
     res.writeHead(200);
