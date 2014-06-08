@@ -12,9 +12,9 @@ http.createServer(function(req,res){
 	result = "args null";
     }
     else if(addr.trim() == t.trim()){
-	result = "true";
+	result = "false";
     }else{
-	result = 'false';
+	result = 'true';
     }
     
     res.writeHead(200);
