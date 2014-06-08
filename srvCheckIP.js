@@ -4,11 +4,11 @@ var url = require('url')
 
 http.createServer(function(req,res){
     var addr = req.socket.remoteAddress;
-    console.log(addr);
-    
-    console.log('\n');
+    console.log("remote addr:%s",addr);
     var ano = false;
-    if(addr == url.parse(req.url,true).query.t){
+    var t = url.parse(req.url,true).query.t;
+    console.log("expected addr:%s",t);
+    if(addr == ){
 	ano=false;
     }
     
