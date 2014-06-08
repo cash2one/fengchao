@@ -227,6 +227,20 @@ exports.request_data=function(opts,data,fn,args){
 	}
     });
     });
+    
+    req.setTimeout(5000,function(){
+	req.abort();
+	if(args==undefined){
+	    fn(null,[opts.data]);
+        }
+        else if(Array.isArray(args)){
+	    args.push(opts.data||data);
+	    fn(null,args);
+        }else{
+	    fn(null,[args,opts.data||data]);
+        }
+    });
+    
     req.on('error', function(e) {
 //	if(opts.path && opts.path.indexOf('list.jsp')!=-1){
 //		console.log("page :"+opts.data.pageNum+"got error-"+e.message);
@@ -235,7 +249,7 @@ exports.request_data=function(opts,data,fn,args){
 //		console.log("page of hotel:"+opts.data.seq+" got error-"+e.message);
 //		fs.appendFile("app_qunar_hotel_failed.txt","h:"+JSON.stringify(opts.data)+'\r\n');
 //	}
-    //console.log(e.message);
+    console.log(e.message);
 	//var proxy = exports.randomip(proxys);
     //            if(proxy.host&&proxy.port){
     //                opts.port = proxy.port;
@@ -243,7 +257,16 @@ exports.request_data=function(opts,data,fn,args){
     //            }
                 
                 //retry
-                exports.request_data(opts,data,fn,args);
+        //exports.request_data(opts,data,fn,args);
+	if(args==undefined){
+	    fn(null,[opts.data]);
+        }
+        else if(Array.isArray(args)){
+	    args.push(opts.data||data);
+	    fn(null,args);
+        }else{
+	    fn(null,[args,opts.data||data]);
+        }
     });
     if(opts.method=='POST')
         req.write(strData);
