@@ -8,7 +8,7 @@ http.createServer(function(req,res){
     
     console.log('\n');
     var ano = false;
-    if(addr === url.parse(req.url,true).query.t){
+    if(addr == url.parse(req.url,true).query.t){
 	ano=false;
     }
     
