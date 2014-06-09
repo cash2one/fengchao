@@ -114,16 +114,27 @@ exports.request_data=function(opts,data,fn,args){
     var strData = data && JSON.stringify(data);
     if(opts.method=='POST')
         opts.headers['Content-Length']=Buffer.byteLength(strData,'utf8');
-    
+
     var req = http.request(opts, function(res) {
 	if (res.statusCode > 300 && res.statusCode < 400&& res.headers.location) {
+	    var urlObj = url.parse(res.headers.location);
 
-        if (url.parse(res.headers.location).hostname){
+        if (urlObj.hostname && urlObj.protocol=='http:'){
 	    console.log("Redirecting to "+res.headers.location);
 	    exports.request_data(res.headers.location,data,fn,args);
 	}
         else {
-
+	    req.abort();
+	    console.log("do not handle https.");
+	    if(args==undefined){
+		fn(null,[data]);
+	    }
+	    else if(Array.isArray(args)){
+		args.push(opts.data||data);
+		fn(null,args);
+	    }else{
+		fn(null,[args,opts.data||data]);
+	    }
         }
     }
     var chunks=[];

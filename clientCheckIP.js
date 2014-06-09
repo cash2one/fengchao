@@ -7,6 +7,7 @@ function CheckerClient(){
     this.proxyItems = [];
     this.doneCount = 0;
     this.verified = [];
+    this.clientIP = '101.228.231.196';
 }
 
 CheckerClient.prototype.start = function(){
@@ -16,7 +17,12 @@ CheckerClient.prototype.start = function(){
 
 CheckerClient.prototype.init = function(){
     this.proxyItems = fs.readFileSync("ip.txt").toString().split('\n');
-    console.log("total proxys: %d",this.proxyItems.length);
+
+    var args = process.argv.slice(2);
+    if(args.length>0){
+	this.clientIP = args[0];
+    }
+    console.log("total proxys: %d, client IP: %s",this.proxyItems.length,this.clientIP);
 }
 
 CheckerClient.prototype.check = function(line){
@@ -29,7 +35,7 @@ CheckerClient.prototype.check = function(line){
     var ip = proxy[0];
     var port = proxy[1];
     //http://www.baidu.com/
-    var opt = new helper.basic_options(ip,'http://107.170.197.198:8081/','GET',false,false,{t:'101.228.231.196'},port);
+    var opt = new helper.basic_options(ip,'http://107.170.197.198:8081/','GET',false,false,{t:this.clientIP},port);
     
     helper.request_data(opt,null,function(data,args){
 	that.process(data,args);
