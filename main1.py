@@ -33,6 +33,7 @@ def run():
         print browser.current_url
         time.sleep(sleep_time)
 
+    time.sleep(sleep_time)
     browser.get(guess_page)
 
     enter_guess_button = None
@@ -54,16 +55,19 @@ def run():
     file_object = codecs.open(input_file_name, 'r','utf-8')
     result_file_object=codecs.open(result_file_name,'r','utf-8')
     result_file_object2=codecs.open(result_file_name,'a','utf-8')
-    
+    ind=makeIndex(result_file_name)
+    printIndex(ind)
+
     try:
       for line in file_object:
         #look2 = codecs.lookup("utf-8")
         #b = look2.decode(line)
         _keyword = ''.join(line.split())
         print '读取内容：'+_keyword
-        t=visitfile(result_file_name,_keyword)
+#       t=visitfile(result_file_name,_keyword)
+        t=indexQuery(ind,_keyword)
         print 'check :'+str(t)
-        if t == 0 :
+        if t == '' :
         
 		while True:
 			try :
@@ -122,6 +126,28 @@ def visitfile(fname, searchKey):
                 fcount += 1
       except: pass
       return fcount
+
+def makeIndex(filename):
+    i=0
+    index = {}
+    for line in open(filename) :
+        word=line.split(" ")[0]
+        print word
+        index.setdefault(word)
+        i=i+1
+    return index
+ 
+def printIndex(index):
+    for word, lst in index.items():
+        print 'index:'+word
+ 
+def indexQuery(index, args):
+    print 'args'+args
+    found = ''
+    for key in index.keys():
+         if key==args:
+            found=key
+    return found
 
 if __name__ == "__main__":
     print 'start'
