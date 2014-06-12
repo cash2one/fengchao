@@ -1,0 +1,579 @@
+start
+D:\Program Files (x86)\Git\work\fengchao\words.txt
+D:\Program Files (x86)\Git\work\fengchao\words.txt
+http://cas.baidu.com/?tpl=www2&fromu=http%3A%2F%2Fwww2.baidu.com%2F
+http://cas.baidu.com/?tpl=www2&fromu=http%3A%2F%2Fwww2.baidu.com%2F
+http://cas.baidu.com/?tpl=www2&fromu=http%3A%2F%2Fwww2.baidu.com%2F
+http://cas.baidu.com/?tpl=www2&fromu=http%3A%2F%2Fwww2.baidu.com%2F
+http://cas.baidu.com/?tpl=www2&fromu=http%3A%2F%2Fwww2.baidu.com%2F
+http://cas.baidu.com/?tpl=www2&fromu=http%3A%2F%2Fwww2.baidu.com%2F
+http://cas.baidu.com/?tpl=www2&fromu=http%3A%2F%2Fwww2.baidu.com%2F
+http://cas.baidu.com/?tpl=www2&fromu=http%3A%2F%2Fwww2.baidu.com%2F
+Message: u'Unable to locate element: {"method":"id","selector":"ctrlbuttonBidBtnlabel"}' ; Stacktrace: 
+    at FirefoxDriver.prototype.findElementInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9470)
+    at FirefoxDriver.prototype.findElement (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9479)
+    at DelayedCommand.prototype.executeInternal_/h (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11455)
+    at DelayedCommand.prototype.executeInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11460)
+    at DelayedCommand.prototype.execute/< (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11402) 
+Traceback (most recent call last):
+  File "main1.py", line 41, in run
+    enter_guess_button = browser.find_element_by_id('ctrlbuttonBidBtnlabel')
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 206, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 662, in find_element
+    {'using': by, 'value': value})['value']
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 173, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 164, in check_response
+    raise exception_class(message, screen, stacktrace)
+NoSuchElementException: Message: u'Unable to locate element: {"method":"id","selector":"ctrlbuttonBidBtnlabel"}' ; Stacktrace: 
+    at FirefoxDriver.prototype.findElementInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9470)
+    at FirefoxDriver.prototype.findElement (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9479)
+    at DelayedCommand.prototype.executeInternal_/h (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11455)
+    at DelayedCommand.prototype.executeInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11460)
+    at DelayedCommand.prototype.execute/< (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11402) 
+
+Message: u'Unable to locate element: {"method":"id","selector":"ctrlbuttonBidBtnlabel"}' ; Stacktrace: 
+    at FirefoxDriver.prototype.findElementInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9470)
+    at FirefoxDriver.prototype.findElement (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9479)
+    at DelayedCommand.prototype.executeInternal_/h (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11455)
+    at DelayedCommand.prototype.executeInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11460)
+    at DelayedCommand.prototype.execute/< (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11402) 
+Traceback (most recent call last):
+  File "main1.py", line 41, in run
+    enter_guess_button = browser.find_element_by_id('ctrlbuttonBidBtnlabel')
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 206, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 662, in find_element
+    {'using': by, 'value': value})['value']
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 173, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 164, in check_response
+    raise exception_class(message, screen, stacktrace)
+NoSuchElementException: Message: u'Unable to locate element: {"method":"id","selector":"ctrlbuttonBidBtnlabel"}' ; Stacktrace: 
+    at FirefoxDriver.prototype.findElementInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9470)
+    at FirefoxDriver.prototype.findElement (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9479)
+    at DelayedCommand.prototype.executeInternal_/h (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11455)
+    at DelayedCommand.prototype.executeInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11460)
+    at DelayedCommand.prototype.execute/< (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11402) 
+
+Message: u'Unable to locate element: {"method":"id","selector":"ctrlbuttonBidBtnlabel"}' ; Stacktrace: 
+    at FirefoxDriver.prototype.findElementInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9470)
+    at FirefoxDriver.prototype.findElement (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9479)
+    at DelayedCommand.prototype.executeInternal_/h (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11455)
+    at DelayedCommand.prototype.executeInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11460)
+    at DelayedCommand.prototype.execute/< (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11402) 
+Traceback (most recent call last):
+  File "main1.py", line 41, in run
+    enter_guess_button = browser.find_element_by_id('ctrlbuttonBidBtnlabel')
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 206, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 662, in find_element
+    {'using': by, 'value': value})['value']
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 173, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 164, in check_response
+    raise exception_class(message, screen, stacktrace)
+NoSuchElementException: Message: u'Unable to locate element: {"method":"id","selector":"ctrlbuttonBidBtnlabel"}' ; Stacktrace: 
+    at FirefoxDriver.prototype.findElementInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9470)
+    at FirefoxDriver.prototype.findElement (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9479)
+    at DelayedCommand.prototype.executeInternal_/h (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11455)
+    at DelayedCommand.prototype.executeInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11460)
+    at DelayedCommand.prototype.execute/< (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11402) 
+
+Message: u'Unable to locate element: {"method":"id","selector":"ctrlbuttonBidBtnlabel"}' ; Stacktrace: 
+    at FirefoxDriver.prototype.findElementInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9470)
+    at FirefoxDriver.prototype.findElement (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9479)
+    at DelayedCommand.prototype.executeInternal_/h (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11455)
+    at DelayedCommand.prototype.executeInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11460)
+    at DelayedCommand.prototype.execute/< (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11402) 
+Traceback (most recent call last):
+  File "main1.py", line 41, in run
+    enter_guess_button = browser.find_element_by_id('ctrlbuttonBidBtnlabel')
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 206, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 662, in find_element
+    {'using': by, 'value': value})['value']
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 173, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 164, in check_response
+    raise exception_class(message, screen, stacktrace)
+NoSuchElementException: Message: u'Unable to locate element: {"method":"id","selector":"ctrlbuttonBidBtnlabel"}' ; Stacktrace: 
+    at FirefoxDriver.prototype.findElementInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9470)
+    at FirefoxDriver.prototype.findElement (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9479)
+    at DelayedCommand.prototype.executeInternal_/h (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11455)
+    at DelayedCommand.prototype.executeInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11460)
+    at DelayedCommand.prototype.execute/< (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11402) 
+
+Message: u'Unable to locate element: {"method":"id","selector":"ctrlbuttonBidBtnlabel"}' ; Stacktrace: 
+    at FirefoxDriver.prototype.findElementInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9470)
+    at FirefoxDriver.prototype.findElement (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9479)
+    at DelayedCommand.prototype.executeInternal_/h (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11455)
+    at DelayedCommand.prototype.executeInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11460)
+    at DelayedCommand.prototype.execute/< (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11402) 
+Traceback (most recent call last):
+  File "main1.py", line 41, in run
+    enter_guess_button = browser.find_element_by_id('ctrlbuttonBidBtnlabel')
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 206, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 662, in find_element
+    {'using': by, 'value': value})['value']
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 173, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 164, in check_response
+    raise exception_class(message, screen, stacktrace)
+NoSuchElementException: Message: u'Unable to locate element: {"method":"id","selector":"ctrlbuttonBidBtnlabel"}' ; Stacktrace: 
+    at FirefoxDriver.prototype.findElementInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9470)
+    at FirefoxDriver.prototype.findElement (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9479)
+    at DelayedCommand.prototype.executeInternal_/h (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11455)
+    at DelayedCommand.prototype.executeInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11460)
+    at DelayedCommand.prototype.execute/< (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11402) 
+
+Message: u'Unable to locate element: {"method":"id","selector":"ctrlbuttonBidBtnlabel"}' ; Stacktrace: 
+    at FirefoxDriver.prototype.findElementInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9470)
+    at FirefoxDriver.prototype.findElement (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9479)
+    at DelayedCommand.prototype.executeInternal_/h (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11455)
+    at DelayedCommand.prototype.executeInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11460)
+    at DelayedCommand.prototype.execute/< (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11402) 
+Traceback (most recent call last):
+  File "main1.py", line 41, in run
+    enter_guess_button = browser.find_element_by_id('ctrlbuttonBidBtnlabel')
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 206, in find_element_by_id
+    return self.find_element(by=By.ID, value=id_)
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 662, in find_element
+    {'using': by, 'value': value})['value']
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 173, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 164, in check_response
+    raise exception_class(message, screen, stacktrace)
+NoSuchElementException: Message: u'Unable to locate element: {"method":"id","selector":"ctrlbuttonBidBtnlabel"}' ; Stacktrace: 
+    at FirefoxDriver.prototype.findElementInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9470)
+    at FirefoxDriver.prototype.findElement (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/driver_component.js:9479)
+    at DelayedCommand.prototype.executeInternal_/h (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11455)
+    at DelayedCommand.prototype.executeInternal_ (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11460)
+    at DelayedCommand.prototype.execute/< (file:///c:/users/zhu.wei/appdata/local/temp/tmpz0pjtf/extensions/fxdriver@googlecode.com/components/command_processor.js:11402) 
+
+读取内容：医生在线咨询
+check :1
+读取内容：在线医生免费咨询
+check :1
+读取内容：好医生在线
+check :1
+读取内容：儿科医生在线咨询
+check :1
+读取内容：好医生在线咨询
+check :1
+读取内容：医院医生在线咨询
+check :1
+读取内容：心理医生在线咨询
+check :1
+读取内容：皮肤科医生在线咨询
+check :1
+读取内容：内科医生在线咨询
+check :1
+读取内容：有医生在线吗
+check :1
+读取内容：孕妇医生在线咨询
+check :1
+读取内容：身高医生在线咨询
+check :1
+读取内容：外伤医生在线咨询
+check :0
+失败价格0：
+失败价格0：
+失败价格1：
+失败价格1：
+失败价格1：
+失败价格1：
+失败价格1：
+失败价格1：
+失败价格0：
+失败价格1：
+失败价格1：
+失败价格0：
+失败价格0：
+失败价格1：
+成功价格：外伤医生在线咨询
+读取内容：冠心病医生在线咨询
+check :1
+读取内容：人流在线咨询心理医生在线咨询
+check :1
+读取内容：皮肤科医生在线咨询
+check :1
+读取内容：内科医生在线咨询
+check :1
+读取内容：骨科医生在线咨询
+check :1
+读取内容：儿科医生在线咨询
+check :1
+读取内容：好医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询
+check :1
+读取内容：医生在线咨询
+check :1
+读取内容：外科医生在线咨询
+check :1
+读取内容：皮肤好医生在线咨询
+check :1
+读取内容：精神病医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询qq
+check :1
+读取内容：男性医生在线咨询
+check :1
+读取内容：妇科病医生在线咨询
+check :1
+读取内容：精神病医生在线咨询心理医生在线咨询
+check :1
+读取内容：皮肤科医生在线咨询
+check :1
+读取内容：内科医生在线咨询
+check :1
+读取内容：骨科医生在线咨询
+check :1
+读取内容：儿科医生在线咨询
+check :1
+读取内容：好医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询
+check :1
+读取内容：医生在线咨询
+check :1
+读取内容：外科医生在线咨询
+check :1
+读取内容：皮肤好医生在线咨询
+check :1
+读取内容：精神病医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询qq
+check :1
+读取内容：男性医生在线咨询
+check :1
+读取内容：妇科病医生在线咨询
+check :1
+读取内容：精神病医生在线咨询心理医生在线咨询
+check :1
+读取内容：皮肤科医生在线咨询
+check :1
+读取内容：内科医生在线咨询
+check :1
+读取内容：骨科医生在线咨询
+check :1
+读取内容：儿科医生在线咨询
+check :1
+读取内容：好医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询
+check :1
+读取内容：医生在线咨询
+check :1
+读取内容：外科医生在线咨询
+check :1
+读取内容：皮肤好医生在线咨询
+check :1
+读取内容：精神病医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询qq
+check :1
+读取内容：男性医生在线咨询
+check :1
+读取内容：妇科病医生在线咨询
+check :1
+读取内容：精神病医生在线咨询心理医生在线咨询
+check :1
+读取内容：皮肤科医生在线咨询
+check :1
+读取内容：内科医生在线咨询
+check :1
+读取内容：骨科医生在线咨询
+check :1
+读取内容：儿科医生在线咨询
+check :1
+读取内容：好医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询
+check :1
+读取内容：医生在线咨询
+check :1
+读取内容：外科医生在线咨询
+check :1
+读取内容：皮肤好医生在线咨询
+check :1
+读取内容：精神病医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询qq
+check :1
+读取内容：男性医生在线咨询
+check :1
+读取内容：妇科病医生在线咨询
+check :1
+读取内容：精神病医生在线咨询心理医生在线咨询
+check :1
+读取内容：皮肤科医生在线咨询
+check :1
+读取内容：内科医生在线咨询
+check :1
+读取内容：骨科医生在线咨询
+check :1
+读取内容：儿科医生在线咨询
+check :1
+读取内容：好医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询
+check :1
+读取内容：医生在线咨询
+check :1
+读取内容：外科医生在线咨询
+check :1
+读取内容：皮肤好医生在线咨询
+check :1
+读取内容：精神病医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询qq
+check :1
+读取内容：男性医生在线咨询
+check :1
+读取内容：妇科病医生在线咨询
+check :1
+读取内容：精神病医生在线咨询心理医生在线咨询
+check :1
+读取内容：皮肤科医生在线咨询
+check :1
+读取内容：内科医生在线咨询
+check :1
+读取内容：骨科医生在线咨询
+check :1
+读取内容：儿科医生在线咨询
+check :1
+读取内容：好医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询
+check :1
+读取内容：医生在线咨询
+check :1
+读取内容：外科医生在线咨询
+check :1
+读取内容：皮肤好医生在线咨询
+check :1
+读取内容：精神病医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询qq
+check :1
+读取内容：男性医生在线咨询
+check :1
+读取内容：妇科病医生在线咨询
+check :1
+读取内容：精神病医生在线咨询心理医生在线咨询
+check :1
+读取内容：皮肤科医生在线咨询
+check :1
+读取内容：内科医生在线咨询
+check :1
+读取内容：骨科医生在线咨询
+check :1
+读取内容：儿科医生在线咨询
+check :1
+读取内容：好医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询
+check :1
+读取内容：医生在线咨询
+check :1
+读取内容：外科医生在线咨询
+check :1
+读取内容：皮肤好医生在线咨询
+check :1
+读取内容：精神病医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询qq
+check :1
+读取内容：男性医生在线咨询
+check :1
+读取内容：妇科病医生在线咨询
+check :1
+读取内容：精神病医生在线咨询心理医生在线咨询
+check :1
+读取内容：皮肤科医生在线咨询
+check :1
+读取内容：内科医生在线咨询
+check :1
+读取内容：骨科医生在线咨询
+check :1
+读取内容：儿科医生在线咨询
+check :1
+读取内容：好医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询
+check :1
+读取内容：医生在线咨询
+check :1
+读取内容：外科医生在线咨询
+check :1
+读取内容：皮肤好医生在线咨询
+check :1
+读取内容：精神病医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询qq
+check :1
+读取内容：男性医生在线咨询
+check :1
+读取内容：妇科病医生在线咨询
+check :1
+读取内容：精神病医生在线咨询心理医生在线咨询
+check :1
+读取内容：皮肤科医生在线咨询
+check :1
+读取内容：内科医生在线咨询
+check :1
+读取内容：骨科医生在线咨询
+check :1
+读取内容：儿科医生在线咨询
+check :1
+读取内容：好医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询
+check :1
+读取内容：医生在线咨询
+check :1
+读取内容：外科医生在线咨询
+check :1
+读取内容：皮肤好医生在线咨询
+check :1
+读取内容：精神病医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询qq
+check :1
+读取内容：男性医生在线咨询
+check :1
+读取内容：妇科病医生在线咨询
+check :1
+读取内容：精神病医生在线咨询心理医生在线咨询
+check :1
+读取内容：皮肤科医生在线咨询
+check :1
+读取内容：内科医生在线咨询
+check :1
+读取内容：骨科医生在线咨询
+check :1
+读取内容：儿科医生在线咨询
+check :1
+读取内容：好医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询
+check :1
+读取内容：医生在线咨询
+check :1
+读取内容：外科医生在线咨询
+check :1
+读取内容：皮肤好医生在线咨询
+check :1
+读取内容：精神病医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询qq
+check :1
+读取内容：男性医生在线咨询
+check :1
+读取内容：妇科病医生在线咨询
+check :1
+读取内容：精神病医生在线咨询心理医生在线咨询
+check :1
+读取内容：皮肤科医生在线咨询
+check :1
+读取内容：内科医生在线咨询
+check :1
+读取内容：骨科医生在线咨询
+check :1
+读取内容：儿科医生在线咨询
+check :1
+读取内容：好医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询
+check :1
+读取内容：医生在线咨询
+check :1
+读取内容：外科医生在线咨询
+check :1
+读取内容：皮肤好医生在线咨询
+check :1
+读取内容：精神病医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询qq
+check :1
+读取内容：男性医生在线咨询
+check :1
+读取内容：妇科病医生在线咨询
+check :1
+读取内容：精神病医生在线咨询心理医生在线咨询
+check :1
+读取内容：皮肤科医生在线咨询
+check :1
+读取内容：内科医生在线咨询
+check :1
+读取内容：骨科医生在线咨询
+check :1
+读取内容：儿科医生在线咨询
+check :1
+读取内容：好医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询
+check :1
+读取内容：医生在线咨询
+check :1
+读取内容：外科医生在线咨询
+check :1
+读取内容：皮肤好医生在线咨询
+check :1
+读取内容：精神病医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询qq
+check :1
+读取内容：男性医生在线咨询
+check :1
+读取内容：妇科病医生在线咨询
+check :1
+读取内容：精神病医生在线咨询心理医生在线咨询
+check :1
+读取内容：皮肤科医生在线咨询
+check :1
+读取内容：内科医生在线咨询
+check :1
+读取内容：骨科医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询qq
+check :1
+读取内容：男性医生在线咨询
+check :1
+读取内容：妇科病医生在线咨询
+check :1
+读取内容：精神病医生在线咨询心理医生在线咨询
+check :1
+读取内容：皮肤科医生在线咨询
+check :1
+读取内容：内科医生在线咨询
+check :1
+读取内容：骨科医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询qq
+check :1
+读取内容：男性医生在线咨询
+check :1
+读取内容：妇科病医生在线咨询
+check :1
+读取内容：精神病医生在线咨询心理医生在线咨询
+check :1
+读取内容：皮肤科医生在线咨询
+check :1
+读取内容：内科医生在线咨询
+check :1
+读取内容：骨科医生在线咨询
+check :1
+读取内容：皮肤医生在线咨询qq
+check :1
+读取内容：男性医生在线咨询
+check :1
+读取内容：妇科病医生在线咨询
+check :1
+读取内容：精神病医生在线咨询
+check :1
+end

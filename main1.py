@@ -20,7 +20,7 @@ input_file_name =''
 result_file_name =''
 sleep_time=2
 def run():
-    input_file_name=os.getcwd()+os.sep+'keyword.txt'
+    input_file_name=os.getcwd()+os.sep+'words.txt'
     result_file_name=os.getcwd()+os.sep+'result.txt'
     print input_file_name
     print input_file_name
@@ -46,9 +46,9 @@ def run():
             print traceback.format_exc()
 
     enter_guess_button.click()
-    bigVale=10.00
+    bigVale=100.00
     smallVale=0
-    guessValue=10.00
+    guessValue=100.00
     result2=''
     
     file_object = codecs.open(input_file_name, 'r','utf-8')
@@ -81,9 +81,9 @@ def run():
 						guessValue=guessValue+0.01
 					result2=browser.find_element_by_id('ctrltableestimatorResultcell0_4').find_element_by_class_name("ui_table_tdcell").text
 					result_file_object2.write(_keyword+' '+str(guessValue)+' '+str(result2)+'\n')
-					bigVale=10.00
+					bigVale=100.00
 					smallVale=0
-					guessValue=10.00
+					guessValue=100.00
 					result2=''
 					break
 				elif  guess_result1 =='-':
@@ -103,9 +103,9 @@ def run():
 					pass
 			except Exception as e:
 				print e
-				bigVale=10.00
+				bigVale=100.00
 				smallVale=0
-				guessValue=10.00
+				guessValue=100.00
 				result2=''
 				break
 		pass
