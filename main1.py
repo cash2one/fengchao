@@ -18,7 +18,7 @@ login_url = 'http://cas.baidu.com/?tpl=www2&fromu=http%3A%2F%2Fwww2.baidu.com%2F
 guess_page = 'http://fengchao.baidu.com/nirvana/main.html?userid=7396886&t=1402287234824&castk=c4712we77b6c9b4e0d094#/manage/plan~ignoreState=true&navLevel=account'
 input_file_name =''
 result_file_name =''
-sleep_time=1
+sleep_time=1.5
 def run():
     input_file_name=os.getcwd()+os.sep+'words.txt'
     result_file_name=os.getcwd()+os.sep+'result.txt'
@@ -47,9 +47,9 @@ def run():
             print traceback.format_exc()
 
     enter_guess_button.click()
-    bigVale=30.00
+    bigVale=200.00
     smallVale=0
-    guessValue=30.00
+    guessValue=200.00
     result2=''
     
     file_object = codecs.open(input_file_name, 'r','utf-8')
@@ -96,9 +96,9 @@ def run():
 						print 'guess_result2'+guess_result2
 						result2=guess_result2
 					result_file_object2.write(_keyword+' '+str(guessValue)+' '+str(result2)+'\n')
-					bigVale=30.00
+					bigVale=200.00
 					smallVale=0
-					guessValue=30.00
+					guessValue=200.00
 					result2=''
 					break
 				elif  guess_result1 =='-':
@@ -118,9 +118,9 @@ def run():
 					pass
 			except Exception as e:
 				print e
-				bigVale=30.00
+				bigVale=200.00
 				smallVale=0
-				guessValue=30.00
+				guessValue=200.00
 				result2=''
 				break
 		pass
