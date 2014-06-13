@@ -23,7 +23,7 @@ def run():
     input_file_name=os.getcwd()+os.sep+'words.txt'
     result_file_name=os.getcwd()+os.sep+'result.txt'
     print input_file_name
-    print input_file_name
+    print result_file_name
     reload(sys)
     sys.setdefaultencoding( "utf-8" )
     browser = webdriver.Firefox()   # Get local session of firefox
@@ -47,16 +47,15 @@ def run():
             print traceback.format_exc()
 
     enter_guess_button.click()
-    bigVale=100.00
+    bigVale=30.00
     smallVale=0
-    guessValue=100.00
+    guessValue=30.00
     result2=''
     
     file_object = codecs.open(input_file_name, 'r','utf-8')
     result_file_object=codecs.open(result_file_name,'r','utf-8')
     result_file_object2=codecs.open(result_file_name,'a','utf-8')
     ind=makeIndex(result_file_name)
-    printIndex(ind)
 
     try:
       for line in file_object:
@@ -67,7 +66,7 @@ def run():
 #       t=visitfile(result_file_name,_keyword)
         t=indexQuery(ind,_keyword)
         print 'check :'+str(t)
-        if t == '' :
+        if t == '' and _keyword!='':
         
 		while True:
 			try :
@@ -97,9 +96,9 @@ def run():
 						print 'guess_result2'+guess_result2
 						result2=guess_result2
 					result_file_object2.write(_keyword+' '+str(guessValue)+' '+str(result2)+'\n')
-					bigVale=100.00
+					bigVale=30.00
 					smallVale=0
-					guessValue=100.00
+					guessValue=30.00
 					result2=''
 					break
 				elif  guess_result1 =='-':
@@ -119,9 +118,9 @@ def run():
 					pass
 			except Exception as e:
 				print e
-				bigVale=100.00
+				bigVale=30.00
 				smallVale=0
-				guessValue=100.00
+				guessValue=30.00
 				result2=''
 				break
 		pass
@@ -154,7 +153,6 @@ def printIndex(index):
         print 'index:'+word
  
 def indexQuery(index, args):
-    print 'args'+args
     found = ''
     for key in index.keys():
          if key==args:
