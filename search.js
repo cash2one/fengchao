@@ -46,8 +46,8 @@ search.prototype.wget = function(){
     
     var opt  =new helper.basic_options('www.baidu.com','/s','GET',false,false,query);
     opt.headers['referer']='http://www.baidu.com';
-    opt.agent = new http.Agent();
-    opt.agent.maxSocket = 1;
+//    opt.agent = new http.Agent();
+//    opt.agent.maxSocket = 1;
     helper.request_data(opt,null,function(data,args){
 	that.process(data,args);
     },word);
@@ -58,7 +58,7 @@ search.prototype.process = function(data,args){
 	console.log("data empty");
 	setTimeout(function(){
 	    that.wget();
-	},2000);
+	},20000);
 	return;
     }
     var rightAdCount,adLinkCount,isInBlock=0;
@@ -70,7 +70,6 @@ search.prototype.process = function(data,args){
     
     m = data.match(/>推广</g);
     adLinkCount = m && m.length || 0;
-    
     
     if(!adLinkCount){
 	m = data.match(/<table.*?<\/table>(?=<br\/>)/g);
@@ -84,7 +83,7 @@ search.prototype.process = function(data,args){
     this.append(args[0],adLinkCount,rightAdCount,isInBlock);
     setTimeout(function(){
 	that.wget();
-    },2000);
+    },20000);
 }
 
 search.prototype.append = function(word,adLinkCount,rightAdCount,isInBlock){
