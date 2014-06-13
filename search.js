@@ -8,27 +8,32 @@ function search(){
     this.keywordFile = "words.txt";
     this.resultFile = "result/linkcount.txt";
     this.cityCategory = 1;
+    this.done={};
 }
 
 search.prototype.init = function(){
+    if(fs.existsSync(this.resultFile)){
+	fs.readFileSync(this.resultFile).toString().split('\r\n').reduce(function(prev,cur){
+	    prev[cur.split(',')[0]]=true;
+	    return prev;
+	},this.done);
+    }
     if(fs.existsSync(this.keywordFile)){
 	this.words = fs.readFileSync(this.keywordFile).toString().split('\n').filter(function(line){
-	    if(!line || line=='\r'){
+	    if(!line||line=='\r'||line=='\n'){
 		return false;
 	    }
-	    return true;
-	}).map(function(line){
-	    return line.replace('\r','');
+	    var w = line.replace('\r','').replace('\n','');
+	    return !that.done[w];
 	});
-    }
-    console.log("total keywords: %d",this.words.length);
-
-    var args = process.argv.slice(2);
-    if(args.length>0){
-	this.cityCategory = args[0];
+	console.log("total keywords: %d",this.words.length);
+	
+	var args = process.argv.slice(2);
+	if(args.length>0){
+	    this.cityCategory = args[0];
+	}
     }
 }
-
 //http://www.baidu.com/s?tn=89040009_4_pg&ie=utf-8&bs=%E9%B2%9C%E8%8A%B1&f=8&rsv_bp=1&rsv_spt=3&wd=%E9%B2%9C%E8%8A%B1
 search.prototype.wget = function(){
     if(!this.words.length){
@@ -41,6 +46,8 @@ search.prototype.wget = function(){
     
     var opt  =new helper.basic_options('www.baidu.com','/s','GET',false,false,query);
     opt.headers['referer']='http://www.baidu.com';
+    opt.agent = new http.Agent();
+    opt.agent.maxSocket = 1;
     helper.request_data(opt,null,function(data,args){
 	that.process(data,args);
     },word);
@@ -49,6 +56,9 @@ search.prototype.wget = function(){
 search.prototype.process = function(data,args){
     if(!data){
 	console.log("data empty");
+	setTimeout(function(){
+	    that.wget();
+	},2000);
 	return;
     }
     var rightAdCount,adLinkCount,isInBlock=0;

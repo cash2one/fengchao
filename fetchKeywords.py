@@ -50,8 +50,10 @@ def run():
     #if len(inputCtrl) == 0:
     #    return;
     lastValue = inputCtrl.get_attribute('value')
+
     for word in keyword_list:
         while inputCtrl.get_attribute('value') == lastValue:
+            inputCtrl.clear()            
             inputCtrl.send_keys(word)
             print "input value: "
             print inputCtrl.get_attribute('value')

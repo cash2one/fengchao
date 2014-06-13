@@ -33,12 +33,13 @@ for(var k in Seed){
 	}
 	console.log(seedWord);
 	var data = fs.readFileSync("result/htmlTargetWords/"+seedWord+'.html').toString();
+
 	var $ = cheerio.load(data);
 	var targets = [];
 	$("table tr.table-row").each(function(idx,row){
 	    var t = {};
-	    t.w = $('span.word',row).text();
-	    var str = $('td.table-td div.table-tbody-cell',row).eq(2).text();
+	    t.w = $('span.word',this).attr('title');
+	    var str = $('td.table-td div.table-tbody-cell',this).eq(2).text();
 	    if(!isNaN(Number(str))){
 		t.s = Number(str);
 	    }else{
@@ -46,16 +47,19 @@ for(var k in Seed){
 	    }
 	    targets.push(t);
 	});
+	targets.sort(function(a,b){return b.s-a.s;});
+
 	console.log("total target words:%d",targets.length);
 	var rule = Rule[k];
-	var result=targets.slice(0,rule.head-1).map(function(t){return t.w;});
+	var result=targets.slice(0,rule.head).map(function(t){return t.w;});
+
 	result = result.concat(targets.slice(targets.length-rule.tail).map(function(t){return t.w;}));
 	var filtered = targets.filter(function(t){return t.s>=5});
 	console.log("day of search count >5:%d",filtered.length);
 	var mid = Math.floor(filtered.length-1/2);
 	result.push(filtered[mid].w);
-	result.concat(filtered.slice(0,rule.both-1).map(function(t){return t.w;}));
-	result.concat(filtered.slice(filtered.length-rule.both).map(function(t){return t.w;}));
+	result = result.concat(filtered.slice(0,rule.both).map(function(t){return t.w;}));
+	result = result.concat(filtered.slice(filtered.length-rule.both).map(function(t){return t.w;}));
 	fs.appendFileSync("words.txt",result.join('\n')+"\n\n");
     });
 
