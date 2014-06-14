@@ -18,7 +18,7 @@ login_url = 'http://cas.baidu.com/?tpl=www2&fromu=http%3A%2F%2Fwww2.baidu.com%2F
 guess_page = 'http://fengchao.baidu.com/nirvana/main.html?userid=7396886&t=1402287234824&castk=c4712we77b6c9b4e0d094#/manage/plan~ignoreState=true&navLevel=account'
 input_file_name =''
 result_file_name =''
-sleep_time=1.5
+sleep_time=3
 def run():
     input_file_name=os.getcwd()+os.sep+'words.txt'
     result_file_name=os.getcwd()+os.sep+'result.txt'
@@ -47,9 +47,9 @@ def run():
             print traceback.format_exc()
 
     enter_guess_button.click()
-    bigVale=200.00
+    bigVale=100.00
     smallVale=0
-    guessValue=200.00
+    guessValue=100.00
     result2=''
     
     file_object = codecs.open(input_file_name, 'r','utf-8')
@@ -62,12 +62,10 @@ def run():
         #look2 = codecs.lookup("utf-8")
         #b = look2.decode(line)
         _keyword = ''.join(line.split())
-        print '读取内容：'+_keyword
 #       t=visitfile(result_file_name,_keyword)
         t=indexQuery(ind,_keyword)
-        print 'check :'+str(t)
         if t == '' and _keyword!='':
-        
+		
 		while True:
 			try :
 				browser.execute_script('document.getElementById("ctrltextkeywordBid").value = '+str(guessValue))
@@ -96,9 +94,9 @@ def run():
 						print 'guess_result2'+guess_result2
 						result2=guess_result2
 					result_file_object2.write(_keyword+' '+str(guessValue)+' '+str(result2)+'\n')
-					bigVale=200.00
+					bigVale=100.00
 					smallVale=0
-					guessValue=200.00
+					guessValue=100.00
 					result2=''
 					break
 				elif  guess_result1 =='-':
@@ -118,9 +116,9 @@ def run():
 					pass
 			except Exception as e:
 				print e
-				bigVale=200.00
+				bigVale=100.00
 				smallVale=0
-				guessValue=200.00
+				guessValue=100.00
 				result2=''
 				break
 		pass
