@@ -31,7 +31,6 @@ for(var i=0;i<files.length;i++){
     });
 }
 for(var k in words){
-    for(var key in words){
-	fs.appendFileSync('result/lc.txt',words[k]+"\n");
-    }
+    console.log(k+','+words[k]+'\n');
+    //fs.appendFileSync('result/lc.txt',k+','+words[k]+"\n");
 }

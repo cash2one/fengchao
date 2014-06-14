@@ -77,5 +77,5 @@ CheckerClient.prototype.flushToFile = function(){
 
 var instance = new CheckerClient();
 var that = instance;
-instance.start();
+//instance.start();
 exports.CheckerClient = instance;
