@@ -12,8 +12,8 @@ function CheckerClient(){
 
 CheckerClient.prototype.start = function(){
     this.init();
-    this.check(this.proxyItems[0]);
-    //this.proxyItems.forEach(that.check);
+    //this.check(this.proxyItems[0]);
+    this.proxyItems.forEach(that.check);
 }
 
 CheckerClient.prototype.init = function(){
@@ -77,4 +77,5 @@ CheckerClient.prototype.flushToFile = function(){
 
 var instance = new CheckerClient();
 var that = instance;
+//instance.start();
 exports.CheckerClient = instance;
