@@ -40,7 +40,11 @@ search.prototype.wget = function(){
 	console.log("job done.");
 	return;
     }
-    var word = this.words.pop();
+    var word = null;
+    do{
+	word = this.words.shift();
+    }while(this.done[word]);
+    
     var encoded = encodeURIComponent(word);
     var query = {ie:'utf-8',bs:encoded,wd:encoded};
     
@@ -88,6 +92,7 @@ search.prototype.process = function(data,args){
 
 search.prototype.append = function(word,adLinkCount,rightAdCount,isInBlock){
     var result = [word,adLinkCount,isInBlock,rightAdCount,this.cityCategory,'\r\n'];
+    this.done[word]=true;
     fs.appendFile(this.resultFile,result.join());
 }
 
