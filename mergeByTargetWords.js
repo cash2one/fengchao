@@ -25,4 +25,3 @@ files.forEach(function(fileName){
 	words = {};
     }
 });
-
