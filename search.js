@@ -108,7 +108,7 @@ search.prototype.append = function(word,adLinkCount,rightAdCount,isInBlock){
     var result = [word,adLinkCount,isInBlock,rightAdCount,this.cityCategory,'\r\n'];
     console.log(result);
     this.done[word]=true;
-    fs.appendFile(this.resultFile,result.join());
+    fs.appendFile(this.resultFile,result.join("||"));
 }
 
 search.prototype.start = function(){
