@@ -1,0 +1,14 @@
+{
+  "name": "spider",
+  "version": "0.10.1",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+      "xmlhttprequest" : "*",
+      "request" : "*",
+      "sprintf-js":"*",
+      "iconv":"*",
+      "cheerio":"*"
+  }
+}

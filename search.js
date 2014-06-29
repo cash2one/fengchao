@@ -5,13 +5,28 @@ var checker = require('./clientCheckIP.js')
 
 function search(){
     this.words=[];
-    this.keywordFile = "words.txt";
-    this.resultFile = "result/linkcount.txt";
+    this.keywordFile = "2kw.txt";
+    this.resultFile = "result/linkcount.txt"+this.keywordFile;
     this.cityCategory = 1;
     this.done={};
 }
 
 search.prototype.init = function(){
+    var startIdx,len;
+
+    var args = process.argv.slice(2);
+    if(args.length>0){
+	this.cityCategory = args[0];
+    }
+    if(args.length>1){
+	this.keywordFile = args[1];
+    }
+    
+    if(args.length > 2){
+	startIdx = args[2];
+	len = args[3];
+    }
+    
     if(fs.existsSync(this.resultFile)){
 	fs.readFileSync(this.resultFile).toString().split('\r\n').reduce(function(prev,cur){
 	    prev[cur.split(',')[0]]=true;
@@ -25,13 +40,11 @@ search.prototype.init = function(){
 	    }
 	    var w = line.replace('\r','').replace('\n','');
 	    return !that.done[w];
+	}).map(function(line){
+	    return line.replace('\r','');
 	});
+	this.words = this.words.slice(startIdx,len);
 	console.log("total keywords: %d",this.words.length);
-	
-	var args = process.argv.slice(2);
-	if(args.length>0){
-	    this.cityCategory = args[0];
-	}
     }
 }
 //http://www.baidu.com/s?tn=89040009_4_pg&ie=utf-8&bs=%E9%B2%9C%E8%8A%B1&f=8&rsv_bp=1&rsv_spt=3&wd=%E9%B2%9C%E8%8A%B1
@@ -43,7 +56,7 @@ search.prototype.wget = function(){
     var word = null;
     do{
 	word = this.words.shift();
-    }while(this.done[word]);
+    }while(this.done[word] && this.words.length);
     
     var encoded = encodeURIComponent(word);
     var query = {ie:'utf-8',bs:encoded,wd:encoded};
@@ -85,6 +98,7 @@ search.prototype.process = function(data,args){
 	console.log("advertises of list: %s",adLinkCount);
     }
     this.append(args[0],adLinkCount,rightAdCount,isInBlock);
+    console.log(args[0]);
     setTimeout(function(){
 	that.wget();
     },20000);
@@ -92,8 +106,9 @@ search.prototype.process = function(data,args){
 
 search.prototype.append = function(word,adLinkCount,rightAdCount,isInBlock){
     var result = [word,adLinkCount,isInBlock,rightAdCount,this.cityCategory,'\r\n'];
+    console.log(result);
     this.done[word]=true;
-    fs.appendFile(this.resultFile,result.join());
+    fs.appendFile(this.resultFile,result.join("||"));
 }
 
 search.prototype.start = function(){
