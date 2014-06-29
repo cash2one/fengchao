@@ -73,9 +73,9 @@ search.prototype.wget = function(){
 search.prototype.process = function(data,args){
     if(!data){
 	console.log("data empty");
-	setTimeout(function(){
-	    that.wget();
-	},20000);
+	//setTimeout(function(){
+	//    that.wget();
+	//},1000);
 	return;
     }
     var rightAdCount,adLinkCount,isInBlock=0;
@@ -98,7 +98,7 @@ search.prototype.process = function(data,args){
 	console.log("advertises of list: %s",adLinkCount);
     }
     this.append(args[0],adLinkCount,rightAdCount,isInBlock);
-    console.log(args[0]);
+    //console.log(args[0]);
     setTimeout(function(){
 	that.wget();
     },20000);
@@ -106,7 +106,7 @@ search.prototype.process = function(data,args){
 
 search.prototype.append = function(word,adLinkCount,rightAdCount,isInBlock){
     var result = [word,adLinkCount,isInBlock,rightAdCount,this.cityCategory,'\r\n'];
-    console.log(result);
+    //console.log(result);
     this.done[word]=true;
     fs.appendFile(this.resultFile,result.join("||"));
 }
