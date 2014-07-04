@@ -21,10 +21,10 @@ search360.prototype.init = function(){
 	    if(!line||line=='\r'||line=='\n'){
 		return false;
 	    }
-	    var w = line.replace('\r','').replace('\n','');
+	    var w = line.replace('\r','').replace('\n','').split(',')[0];
 	    return !that.done[w];
 	}).map(function(line){
-	    return line.replace('\r','');
+	    return line.replace('\r','').split(',')[0];
 	});
     }
     console.log("total keywords: %d",this.words.length);

@@ -1,8 +1,9 @@
 var fs = require('fs')
 var words = {};
 
-var files = ['linkcount.1.1.txt','linkcount.1.2.txt','linkcount.1.3.txt',
-	     'linkcount.2.1.txt','linkcount.2.2.txt','linkcount.2.3.txt'
+var files = ['linkcount.sogou.txt','linkcount.360.txt'
+    //'linkcount.1.1.txt','linkcount.1.2.txt','linkcount.1.3.txt',
+    //'linkcount.2.1.txt','linkcount.2.2.txt','linkcount.2.3.txt'
 	    ];
 files.forEach(function(fileName){
     if(fs.existsSync('result/'+fileName)){

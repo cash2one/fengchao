@@ -5,7 +5,7 @@ var cheerio = require("cheerio");
 var searchSogou = function(){
     this.resultDir = "result/";
     this.resultFile = "linkcount.sogou.txt";
-    this.keywordFile = "sogoukw.txt";
+    this.keywordFile = "words.2.txt";
     this.done = {};
 }
 
@@ -21,10 +21,10 @@ searchSogou.prototype.init = function(){
 	    if(!line||line=='\r'||line=='\n'){
 		return false;
 	    }
-	    var w = line.replace('\r','').replace('\n','');
+	    var w = line.replace('\r','').replace('\n','').split(',')[0];
 	    return !that.done[w];
 	}).map(function(line){
-	    return line.replace('\r','');
+	    return line.replace('\r','').split(",")[0];
 	});
     }
     console.log("total keywords: %d",this.words.length);
@@ -64,7 +64,7 @@ searchSogou.prototype.process = function(data,args){
     var leftCount = $('.business ol li').length || 0;
     var rightCount = $(".atTrunk .b_rb").length || 0;
     var result = [args[0],leftCount,rightCount,"\r\n"];
-    fs.appendFile(this.resultDir+this.resultFile,result.join("||"));
+    fs.appendFile(this.resultDir+this.resultFile,result.join(","));
     console.log(args[0]);
     this.wget();
 }
