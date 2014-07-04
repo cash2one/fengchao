@@ -5,10 +5,11 @@ var checker = require('./clientCheckIP.js')
 
 function search(){
     this.words=[];
-    this.keywordFile = "2kw.txt";
-    this.resultFile = "result/linkcount.txt"+this.keywordFile;
+    this.keywordFile = "words.3.txt";
+    this.resultFile = "result/linkcount.txt."+this.keywordFile;
     this.cityCategory = 1;
     this.done={};
+    this.logFile = "log/search.log";
 }
 
 search.prototype.init = function(){
@@ -44,13 +45,17 @@ search.prototype.init = function(){
 	    return line.replace('\r','');
 	});
 	this.words = this.words.slice(startIdx,len);
-	console.log("total keywords: %d",this.words.length);
+	var msg = "total keywords: " +this.words.length;
+	console.log(msg);
+	fs.writeFileSync(this.logFile,msg+"\n");
     }
 }
 //http://www.baidu.com/s?tn=89040009_4_pg&ie=utf-8&bs=%E9%B2%9C%E8%8A%B1&f=8&rsv_bp=1&rsv_spt=3&wd=%E9%B2%9C%E8%8A%B1
 search.prototype.wget = function(){
     if(!this.words.length){
-	console.log("job done.");
+	var msg = "job done.";
+	console.log(msg);
+	fs.writeFileSync(this.logFile,msg+"\n");
 	return;
     }
     var word = null;
@@ -73,18 +78,18 @@ search.prototype.wget = function(){
 search.prototype.process = function(data,args){
     if(!data){
 	console.log("data empty");
-	//setTimeout(function(){
-	//    that.wget();
-	//},1000);
+	setTimeout(function(){
+	    that.wget();
+	},1000000);
 	return;
     }
     var rightAdCount,adLinkCount,isInBlock=0;
     //var cnt = fs.readFileSync('baidu.tabled.html').toString();
     var m = data.match(/bdfs\d/g);
     rightAdCount = m && m.length/2 || 0;
-    
-    console.log("advertises of right: %s",rightAdCount);
-    
+    var msg = "advertises of right: "+rightAdCount;
+    console.log(msg);
+    fs.writeFileSync(this.logFile,msg+"\n");
     m = data.match(/>推广</g);
     adLinkCount = m && m.length || 0;
     
@@ -93,15 +98,19 @@ search.prototype.process = function(data,args){
 	var r = m && m[0];
 	adLinkCount = r && r.match(/<table.*?<\/table>/g).length || 0;
 	isInBlock = adLinkCount>0?1:0;
-	console.log("advertises os list(with bg): %d",adLinkCount);
+	msg = "advertises os list(with bg): "+adLinkCount;
+	console.log(msg);
+	fs.writeFileSync(this.logFile,msg+"\n");
     }else{
-	console.log("advertises of list: %s",adLinkCount);
+	msg = "advertises of list: "+adLinkCount;
+	console.log(msg);
+	fs.writeFileSync(this.logFile,msg+"\n");
     }
     this.append(args[0],adLinkCount,rightAdCount,isInBlock);
     //console.log(args[0]);
     setTimeout(function(){
 	that.wget();
-    },20000);
+    },2000);
 }
 
 search.prototype.append = function(word,adLinkCount,rightAdCount,isInBlock){
