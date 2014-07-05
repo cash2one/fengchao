@@ -13,7 +13,7 @@ function search(){
 }
 
 search.prototype.init = function(){
-    var startIdx,len;
+    var startIdx,len,doneCount=0;
 
     var args = process.argv.slice(2);
     if(args.length>0){
@@ -30,22 +30,32 @@ search.prototype.init = function(){
     
     if(fs.existsSync(this.resultFile)){
 	fs.readFileSync(this.resultFile).toString().split('\r\n').reduce(function(prev,cur){
-	    prev[cur.split(',')[0]]=true;
+	    var w = cur.split('||')[0];
+	    //console.log(w);
+	    prev[w]=true;
+	    doneCount++;
 	    return prev;
 	},this.done);
     }
+
     if(fs.existsSync(this.keywordFile)){
-	this.words = fs.readFileSync(this.keywordFile).toString().split('\n').filter(function(line){
+	this.words = fs.readFileSync(this.keywordFile).toString().split('\n').filter(function(line,idx){
+	    if(idx<startIdx || idx>=len)
+		return false;
 	    if(!line||line=='\r'||line=='\n'){
 		return false;
 	    }
 	    var w = line.replace('\r','').replace('\n','');
-	    return !that.done[w];
+	    if(that.done[w])
+		return false;
+	    return true;
 	}).map(function(line){
 	    return line.replace('\r','');
 	});
-	this.words = this.words.slice(startIdx,len);
-	var msg = "total keywords: " +this.words.length;
+	
+	//this.words = this.words.slice(startIdx,len);
+	
+	var msg = "done keywords: "+doneCount+",total keywords: " +this.words.length;
 	console.log(msg);
 	fs.writeFileSync(this.logFile,msg+"\n");
     }
@@ -78,6 +88,7 @@ search.prototype.wget = function(){
 search.prototype.process = function(data,args){
     if(!data){
 	console.log("data empty");
+	fs.writeFileSync("data empty");
 	setTimeout(function(){
 	    that.wget();
 	},1000000);
