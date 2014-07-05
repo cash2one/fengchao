@@ -57,7 +57,7 @@ search.prototype.init = function(){
 	
 	var msg = "done keywords: "+doneCount+",total keywords: " +this.words.length;
 	console.log(msg);
-	fs.writeFileSync(this.logFile,msg+"\n");
+	fs.appendFileSync(this.logFile,msg+"\n");
     }
 }
 //http://www.baidu.com/s?tn=89040009_4_pg&ie=utf-8&bs=%E9%B2%9C%E8%8A%B1&f=8&rsv_bp=1&rsv_spt=3&wd=%E9%B2%9C%E8%8A%B1
@@ -65,7 +65,7 @@ search.prototype.wget = function(){
     if(!this.words.length){
 	var msg = "job done.";
 	console.log(msg);
-	fs.writeFileSync(this.logFile,msg+"\n");
+	fs.appendFileSync(this.logFile,msg+"\n");
 	return;
     }
     var word = null;
@@ -88,10 +88,12 @@ search.prototype.wget = function(){
 search.prototype.process = function(data,args){
     if(!data){
 	console.log("data empty");
-	fs.writeFileSync("data empty");
-	setTimeout(function(){
-	    that.wget();
-	},1000000);
+	fs.appendFileSync(this.logFile,"data empty\n");
+	if(args[args.length-1]=="redirect"){
+	    setTimeout(function(){
+		that.wget();
+	    },1000000);
+	}
 	return;
     }
     var rightAdCount,adLinkCount,isInBlock=0;
@@ -100,7 +102,7 @@ search.prototype.process = function(data,args){
     rightAdCount = m && m.length/2 || 0;
     var msg = "advertises of right: "+rightAdCount;
     console.log(msg);
-    fs.writeFileSync(this.logFile,msg+"\n");
+    fs.appendFileSync(this.logFile,msg+"\n");
     m = data.match(/>推广</g);
     adLinkCount = m && m.length || 0;
     
@@ -111,11 +113,11 @@ search.prototype.process = function(data,args){
 	isInBlock = adLinkCount>0?1:0;
 	msg = "advertises os list(with bg): "+adLinkCount;
 	console.log(msg);
-	fs.writeFileSync(this.logFile,msg+"\n");
+	fs.appendFileSync(this.logFile,msg+"\n");
     }else{
 	msg = "advertises of list: "+adLinkCount;
 	console.log(msg);
-	fs.writeFileSync(this.logFile,msg+"\n");
+	fs.appendFileSync(this.logFile,msg+"\n");
     }
     this.append(args[0],adLinkCount,rightAdCount,isInBlock);
     //console.log(args[0]);
