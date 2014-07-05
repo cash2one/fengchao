@@ -89,11 +89,13 @@ search.prototype.process = function(data,args){
     if(!data){
 	console.log("data empty");
 	fs.appendFileSync(this.logFile,"data empty\n");
+	var waitTime=0;
 	if(args[args.length-1]=="redirect"){
-	    setTimeout(function(){
-		that.wget();
-	    },1000000);
+	    waitTime=1000000;
 	}
+	setTimeout(function(){
+	    that.wget();
+	},waitTime);
 	return;
     }
     var rightAdCount,adLinkCount,isInBlock=0;
