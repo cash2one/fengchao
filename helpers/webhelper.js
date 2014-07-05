@@ -123,13 +123,14 @@ exports.request_data=function(opts,data,fn,args){
 	    console.log("Redirecting to "+res.headers.location);
 	    //exports.request_data(res.headers.location,data,fn,args);
 	    if(args==undefined){
-		fn(null,[data]);
+		fn(null,[data,"redirect"]);
 	    }
 	    else if(Array.isArray(args)){
 		args.push(opts.data||data);
+		args.push("redirect");
 		fn(null,args);
 	    }else{
-		fn(null,[args,opts.data||data]);
+		fn(null,[args,opts.data||data,"redirect"]);
 	    }
 	}
         else {
