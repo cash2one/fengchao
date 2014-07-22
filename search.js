@@ -6,7 +6,7 @@ var checker = require('./clientCheckIP.js')
 function search(){
     this.words=[];
     this.keywordFile = "words.3.txt";
-    this.resultFile = "result/linkcount.txt."+this.keywordFile;
+    this.resultFile;
     this.cityCategory = 1;
     this.done={};
     this.logFile = "log/search.log";
@@ -22,7 +22,7 @@ search.prototype.init = function(){
     if(args.length>1){
 	this.keywordFile = args[1];
     }
-    
+    this.resultFile = "result/linkcount.txt."+this.keywordFile;
     if(args.length > 2){
 	startIdx = args[2];
 	len = args[3];
@@ -37,7 +37,7 @@ search.prototype.init = function(){
 	    return prev;
 	},this.done);
     }
-
+    
     if(fs.existsSync(this.keywordFile)){
 	this.words = fs.readFileSync(this.keywordFile).toString().split('\n').filter(function(line,idx){
 	    if(idx<startIdx || idx>=len)
@@ -45,19 +45,19 @@ search.prototype.init = function(){
 	    if(!line||line=='\r'||line=='\n'){
 		return false;
 	    }
-	    var w = line.replace('\r','').replace('\n','');
+	    var w = line.replace('\r','').replace('\n','').split(",")[0];
 	    if(that.done[w])
 		return false;
 	    return true;
 	}).map(function(line){
-	    return line.replace('\r','');
+	    return line.replace('\r','').split(",")[0];
 	});
 	
 	//this.words = this.words.slice(startIdx,len);
 	
 	var msg = "done keywords: "+doneCount+",total keywords: " +this.words.length;
 	console.log(msg);
-	fs.appendFileSync(this.logFile,msg+"\n");
+	fs.appendFile(this.logFile,msg+"\n");
     }
 }
 //http://www.baidu.com/s?tn=89040009_4_pg&ie=utf-8&bs=%E9%B2%9C%E8%8A%B1&f=8&rsv_bp=1&rsv_spt=3&wd=%E9%B2%9C%E8%8A%B1
@@ -65,7 +65,7 @@ search.prototype.wget = function(){
     if(!this.words.length){
 	var msg = "job done.";
 	console.log(msg);
-	fs.appendFileSync(this.logFile,msg+"\n");
+	fs.appendFile(this.logFile,msg+"\n");
 	return;
     }
     var word = null;
@@ -88,7 +88,7 @@ search.prototype.wget = function(){
 search.prototype.process = function(data,args){
     if(!data){
 	console.log("data empty");
-	fs.appendFileSync(this.logFile,"data empty\n");
+	fs.appendFile(this.logFile,"data empty\n");
 	var waitTime=0;
 	if(args[args.length-1]=="redirect"){
 	    waitTime=1000000;
@@ -102,9 +102,6 @@ search.prototype.process = function(data,args){
     //var cnt = fs.readFileSync('baidu.tabled.html').toString();
     var m = data.match(/bdfs\d/g);
     rightAdCount = m && m.length/2 || 0;
-    var msg = "advertises of right: "+rightAdCount;
-    console.log(msg);
-    fs.appendFileSync(this.logFile,msg+"\n");
     m = data.match(/>推广</g);
     adLinkCount = m && m.length || 0;
     
@@ -113,26 +110,23 @@ search.prototype.process = function(data,args){
 	var r = m && m[0];
 	adLinkCount = r && r.match(/<table.*?<\/table>/g).length || 0;
 	isInBlock = adLinkCount>0?1:0;
-	msg = "advertises os list(with bg): "+adLinkCount;
-	console.log(msg);
-	fs.appendFileSync(this.logFile,msg+"\n");
-    }else{
-	msg = "advertises of list: "+adLinkCount;
-	console.log(msg);
-	fs.appendFileSync(this.logFile,msg+"\n");
     }
+    msg = [args[0],adLinkCount,rightAdCount];
+    console.log(msg.join());
+    fs.appendFile(this.logFile,msg.join()+"\n");
+    
     this.append(args[0],adLinkCount,rightAdCount,isInBlock);
     //console.log(args[0]);
     setTimeout(function(){
 	that.wget();
-    },2000);
+    },5000);
 }
 
 search.prototype.append = function(word,adLinkCount,rightAdCount,isInBlock){
     var result = [word,adLinkCount,isInBlock,rightAdCount,this.cityCategory,'\r\n'];
     //console.log(result);
     this.done[word]=true;
-    fs.appendFile(this.resultFile,result.join("||"));
+    fs.appendFile(this.resultFile,result.join("|"));
 }
 
 search.prototype.start = function(){
