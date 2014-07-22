@@ -30,7 +30,7 @@ search.prototype.init = function(){
     
     if(fs.existsSync(this.resultFile)){
 	fs.readFileSync(this.resultFile).toString().split('\r\n').reduce(function(prev,cur){
-	    var w = cur.split('||')[0];
+	    var w = cur.split('|')[0];
 	    //console.log(w);
 	    prev[w]=true;
 	    doneCount++;
