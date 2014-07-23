@@ -72,12 +72,12 @@ searchSogou.prototype.process = function(data,args){
     }
     
     var $ = cheerio.load(data);
-    console.log($(".business").length);
-    if($('.business ol li').length==0 &&  $(".atTrunk .b_rb").length==0){
-	console.log("none results");
-    }
-    fs.writeFileSync("result/testPage.txt",data);
-    return;
+//    console.log($(".business").length);
+//    if($('.business ol li').length==0 &&  $(".atTrunk .b_rb").length==0){
+//	console.log("none results");
+//    }
+//    fs.writeFileSync("result/testPage.txt",data);
+//    return;
     var leftCount = $('.business ol li').length || 0;
     var rightCount = $(".atTrunk .b_rb").length || 0;
     var result = [args[0],leftCount,rightCount,"\r\n"];
