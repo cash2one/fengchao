@@ -5,13 +5,13 @@ var cheerio = require("cheerio");
 var search360 = function(){
     this.resultDir = "result/";
     this.resultFile = "linkcount.360.txt";
-    this.keywordFile = "words.2.txt";
+    this.keywordFile = "words.5k.txt";
     this.done = {};
 }
 
 search360.prototype.init = function(){
     if(fs.existsSync(this.resultDir+this.resultFile)){
-	fs.readFileSync(this.resultDir+this.resultFiel).toString().split("\r\n").reduce(function(prev,cur){
+	fs.readFileSync(this.resultDir+this.resultFile).toString().split("\r\n").reduce(function(prev,cur){
 	    prev[cur.split(',')[0]]=true;
 	    return prev;
 	},this.done);
@@ -57,17 +57,21 @@ search360.prototype.wget = function(){
 search360.prototype.process = function(data,args){
     if(!data){
 	console.log("data empty");
-	setTimeout(function(){
-	    that.wget();
-	},2000);
+	//setTimeout(function(){
+	//    that.wget();
+        //},2000);
+	return;
     }
-
+    if(data.indexOf("360搜索_访问异常出错")>-1){
+	console.log("请输入验证码");
+       return;
+    }
     var $ = cheerio.load(data);
     var leftCount = $("#djbox li").length || 0;
     var rightCount = $("#rightbox li").length || 0;
     var result = [args[0],leftCount,rightCount,"\r\n"];
     fs.appendFile(this.resultDir+this.resultFile,result.join());
-    console.log(args[0]);
+    console.log("%s,%s,%s",args[0],leftCount,rightCount);
     this.wget();
 }
 

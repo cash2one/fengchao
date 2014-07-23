@@ -31,7 +31,6 @@ search.prototype.init = function(){
     if(fs.existsSync(this.resultFile)){
 	fs.readFileSync(this.resultFile).toString().split('\r\n').reduce(function(prev,cur){
 	    var w = cur.split('|')[0];
-	    //console.log(w);
 	    prev[w]=true;
 	    doneCount++;
 	    return prev;
@@ -116,7 +115,6 @@ search.prototype.process = function(data,args){
     fs.appendFile(this.logFile,msg.join()+"\n");
     
     this.append(args[0],adLinkCount,rightAdCount,isInBlock);
-    //console.log(args[0]);
     setTimeout(function(){
 	that.wget();
     },5000);
@@ -124,7 +122,6 @@ search.prototype.process = function(data,args){
 
 search.prototype.append = function(word,adLinkCount,rightAdCount,isInBlock){
     var result = [word,adLinkCount,isInBlock,rightAdCount,this.cityCategory,'\r\n'];
-    //console.log(result);
     this.done[word]=true;
     fs.appendFile(this.resultFile,result.join("|"));
 }

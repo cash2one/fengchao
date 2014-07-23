@@ -5,11 +5,20 @@ var cheerio = require("cheerio");
 var searchSogou = function(){
     this.resultDir = "result/";
     this.resultFile = "linkcount.sogou.txt";
-    this.keywordFile = "words.2.txt";
+    this.keywordFile = "words.5k.txt";
     this.done = {};
 }
 
 searchSogou.prototype.init = function(){
+    var startIdx,len,doneCount=0;
+    var args = process.argv.slice(2);
+    if(args.length>0){
+	this.keywordFile = args[0];
+    }
+    if(args.length > 1){
+	startIdx = args[1];
+	len = args[2];
+    }
     if(fs.existsSync(this.resultDir+this.resultFile)){
 	fs.readFileSync(this.resultDir+this.resultFile).toString().split("\r\n").reduce(function(prev,cur){
 	    prev[cur.split(',')[0]]=true;
@@ -17,7 +26,9 @@ searchSogou.prototype.init = function(){
 	},this.done);
     }
     if(fs.existsSync(this.keywordFile)){
-	this.words = fs.readFileSync(this.keywordFile).toString().split("\n").filter(function(line){
+	this.words = fs.readFileSync(this.keywordFile).toString().split("\n").filter(function(line,idx){
+	    if(idx<startIdx || idx>=len)
+		return false;
 	    if(!line||line=='\r'||line=='\n'){
 		return false;
 	    }
@@ -59,13 +70,19 @@ searchSogou.prototype.process = function(data,args){
 	console.log("data empty");
 	return;
     }
-
+    
     var $ = cheerio.load(data);
+    console.log($(".business").length);
+    if($('.business ol li').length==0 &&  $(".atTrunk .b_rb").length==0){
+	console.log("none results");
+    }
+    fs.writeFileSync("result/testPage.txt",data);
+    return;
     var leftCount = $('.business ol li').length || 0;
     var rightCount = $(".atTrunk .b_rb").length || 0;
     var result = [args[0],leftCount,rightCount,"\r\n"];
     fs.appendFile(this.resultDir+this.resultFile,result.join(","));
-    console.log(args[0]);
+    console.log("%s,%s,%s",args[0],leftCount,rightCount);
     this.wget();
 }
 
