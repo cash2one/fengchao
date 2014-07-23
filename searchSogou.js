@@ -83,7 +83,9 @@ searchSogou.prototype.process = function(data,args){
     var result = [args[0],leftCount,rightCount,"\r\n"];
     fs.appendFile(this.resultDir+this.resultFile,result.join(","));
     console.log("%s,%s,%s",args[0],leftCount,rightCount);
-    this.wget();
+    setTimeout(function(){
+	that.wget();
+    },20000);
 }
 
 var instance = new searchSogou();
