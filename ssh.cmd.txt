@@ -13,9 +13,9 @@ ssh root@182.92.8.70 "sudo apt-get install python-software-properties;sudo add-a
 
 
 
-ssh cjl@182.92.161.114 "sudo apt-get install python-software-properties;sudo add-apt-repository ppa:chris-lea/node.js;sudo apt-get update;sudo apt-get install -y build-essential;sudo apt-get install -y git;mkdir fengchao;cd fengchao;git init;git pull https://gitcafe.com/mike442144/fengchao.git;sudo apt-get install -y nodejs;sudo apt-get install -y npm;cd fengchao;mkdir node_modules;mkdir log;mkdir result;npm config set registry http://registry.npmjs.org/;sudo npm install -d"
+ssh cjl@182.92.161.114 "sudo apt-get install python-software-properties;sudo add-apt-repository ppa:chris-lea/node.js;sudo apt-get update;sudo apt-get install -y build-essential;sudo apt-get install -y git;mkdir fengchao;cd fengchao;git init;git pull https://gitcafe.com/mike442144/fengchao.git;sudo apt-get install -y nodejs;sudo apt-get install -y npm;cd fengchao;mkdir node_modules;mkdir log;mkdir result;npm config set registry http://registry.npmjs.org/;sudo npm install -d;nohup node searchSogou.js words.5k.txt 1500 3000 &;"
 
 
-ssh cjl@182.92.161.114    1000-2000
-ssh cjl@115.28.80.125	  2000-4000
-ssh cjl@114.215.137.245	  4000-5756
+ssh cjl@182.92.161.114    1500-3000
+ssh cjl@115.28.80.125	  4500-6000
+ssh cjl@114.215.137.245	  3000-4500
