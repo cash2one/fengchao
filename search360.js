@@ -67,8 +67,9 @@ search360.prototype.process = function(data,args){
        return;
     }
     var $ = cheerio.load(data);
-    var leftCount = $("#djbox li").length || 0;
-    var rightCount = $("#rightbox li").length || 0;
+    var leftCount = $("#m-spread-left ul li").length;
+    //var leftCount = $("#djbox li").length || 0;
+    var rightCount = $("#rightbox li").length;
     var result = [args[0],leftCount,rightCount,"\r\n"];
     fs.appendFile(this.resultDir+this.resultFile,result.join());
     console.log("%s,%s,%s",args[0],leftCount,rightCount);

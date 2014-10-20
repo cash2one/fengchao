@@ -99,7 +99,7 @@ search.prototype.process = function(data,args){
     }
     var rightAdCount,adLinkCount,isInBlock=0;
     //var cnt = fs.readFileSync('baidu.tabled.html').toString();
-    fs.appendFileSync("log/baidu.result.html",data);
+    fs.appendFileSync("log/"+args[0]+".html",data);
     var m = data.match(/bdfs\d/g);
     rightAdCount = m && m.length/2 || 0;
     m = data.match(/>推广</g);
@@ -118,7 +118,7 @@ search.prototype.process = function(data,args){
     this.append(args[0],adLinkCount,rightAdCount,isInBlock);
     setTimeout(function(){
 	that.wget();
-    },20000);
+    },5000);
 }
 
 search.prototype.append = function(word,adLinkCount,rightAdCount,isInBlock){
