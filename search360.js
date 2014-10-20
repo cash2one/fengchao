@@ -5,7 +5,7 @@ var cheerio = require("cheerio");
 var search360 = function(){
     this.resultDir = "result/";
     this.resultFile = "linkcount.360.txt";
-    this.keywordFile = "words.5k.txt";
+    this.keywordFile = "Keywords_2014_10_16.txt";
     this.done = {};
 }
 
@@ -72,7 +72,9 @@ search360.prototype.process = function(data,args){
     var result = [args[0],leftCount,rightCount,"\r\n"];
     fs.appendFile(this.resultDir+this.resultFile,result.join());
     console.log("%s,%s,%s",args[0],leftCount,rightCount);
-    this.wget();
+    setTimeout(function(){
+	that.wget();
+    },1000);
 }
 
 var instance = new search360();

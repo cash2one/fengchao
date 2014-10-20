@@ -1,7 +1,7 @@
 var fs = require('fs')
 var words={};
 
-fs.readFileSync("result/linkcount.sogou.bak.txt").toString().split("\n").forEach(function(line){
+fs.readFileSync("result/linkcount.sogou.txt").toString().split("\n").forEach(function(line){
     if(!line) return;
     words[line.split(',')[0]]=line;
 });

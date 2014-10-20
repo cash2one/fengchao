@@ -5,7 +5,7 @@ var cheerio = require("cheerio");
 var searchSogou = function(){
     this.resultDir = "result/";
     this.resultFile = "linkcount.sogou.txt";
-    this.keywordFile = "words.5k.txt";
+    this.keywordFile = "Keywords_2014_10_16.txt";
     this.done = {};
 }
 

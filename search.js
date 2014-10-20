@@ -56,7 +56,7 @@ search.prototype.init = function(){
 	
 	var msg = "done keywords: "+doneCount+",total keywords: " +this.words.length;
 	console.log(msg);
-	fs.appendFile(this.logFile,msg+"\n");
+	fs.appendFile(this.logFile,msg+"\n",function(){});
     }
 }
 //http://www.baidu.com/s?tn=89040009_4_pg&ie=utf-8&bs=%E9%B2%9C%E8%8A%B1&f=8&rsv_bp=1&rsv_spt=3&wd=%E9%B2%9C%E8%8A%B1
@@ -64,7 +64,7 @@ search.prototype.wget = function(){
     if(!this.words.length){
 	var msg = "job done.";
 	console.log(msg);
-	fs.appendFile(this.logFile,msg+"\n");
+	fs.appendFile(this.logFile,msg+"\n",function(){});
 	return;
     }
     var word = null;
@@ -87,7 +87,7 @@ search.prototype.wget = function(){
 search.prototype.process = function(data,args){
     if(!data){
 	console.log("data empty");
-	fs.appendFile(this.logFile,"data empty\n");
+	fs.appendFile(this.logFile,"data empty\n",function(){});
 	var waitTime=0;
 	if(args[args.length-1]=="redirect"){
 	    waitTime=1000000;
@@ -99,6 +99,7 @@ search.prototype.process = function(data,args){
     }
     var rightAdCount,adLinkCount,isInBlock=0;
     //var cnt = fs.readFileSync('baidu.tabled.html').toString();
+    fs.appendFileSync("log/baidu.result.html",data);
     var m = data.match(/bdfs\d/g);
     rightAdCount = m && m.length/2 || 0;
     m = data.match(/>推广</g);
@@ -112,12 +113,12 @@ search.prototype.process = function(data,args){
     }
     msg = [args[0],adLinkCount,rightAdCount];
     console.log(msg.join());
-    fs.appendFile(this.logFile,msg.join()+"\n");
+    fs.appendFile(this.logFile,msg.join()+"\n",function(){});
     
     this.append(args[0],adLinkCount,rightAdCount,isInBlock);
     setTimeout(function(){
 	that.wget();
-    },5000);
+    },20000);
 }
 
 search.prototype.append = function(word,adLinkCount,rightAdCount,isInBlock){
