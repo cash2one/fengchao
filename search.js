@@ -74,11 +74,13 @@ search.prototype.wget = function(){
     
     var encoded = encodeURIComponent(word);
     var query = {ie:'utf-8',bs:encoded,wd:encoded};
-    
-    var opt  =new helper.basic_options('www.baidu.com','/s','GET',false,false,query);
+    //var query = {wd:encoded};
+    var opt  =new helper.basic_options('www.baidu.com','/s','GET',false,true,query);
     opt.headers['referer']='http://www.baidu.com';
-//    opt.agent = new http.Agent();
-//    opt.agent.maxSocket = 1;
+    opt.headers['is_xhr'] = 1;
+    opt.headers['is_referer'] = "http://www.baidu.com/s?wd=%E6%90%AC%E5%AE%B6%E5%85%AC%E5%8F%B8&rsv_spt=1&issp=1&f=8&rsv_bp=0&ie=utf-8&tn=92734721_hao_pg&rsv_enter=0&rsv_sug3=13&rsv_sug4=758&rsv_sug1=14&rsv_sug2=0&inputT=4456&rsv_sug=1&bs=%E6%90%AC%E5%AE%B6%E5%85%AC%E5%8F%B8";
+    opt.headers['Cookie'] = "BDUSS=ZOb28yUjUtelNMUzJPYVlxOHpiOXpMSkE4elRjRENCbHJzOX4tSEtQb2FIZ0JVQVFBQUFBJCQAAAAAAAAAAAEAAAAfhRYFbWlrZTQ0MjE0NAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABqR2FMakdhTLT; _ga=GA1.2.1548832101.1409724017; BAIDUID=14625C86523B9B3517C82F7A22242126:FG=1; BAIDUPSID=14625C86523B9B3517C82F7A22242126; BDRCVFR[RUlzQHq_p-D]=abEqiLbLeMnnWckTLR8mvqV; BD_HOME=1; BD_UPN=123145; H_PS_BDC=1; H_PS_BABANNER=4; H_PS_645EC=5268vUjzON8NRX%2Ft0aLU8Ql2Onig9YYuxXC%2FnlIesYmjgi0b9eMlmb1AuSPkyY0GZLJOV%2FF0; BD_CK_SAM=1; BDSVRTM=57; H_PS_PSSID=9328_1452_9144_8593_7825_7799_7963_9193_8973_9051_9024_9171; WWW_ST=1413806533332";
+    opt.agent = false;
     helper.request_data(opt,null,function(data,args){
 	that.process(data,args);
     },word);
@@ -118,7 +120,7 @@ search.prototype.process = function(data,args){
     this.append(args[0],adLinkCount,rightAdCount,isInBlock);
     setTimeout(function(){
 	that.wget();
-    },5000);
+    },10000);
 }
 
 search.prototype.append = function(word,adLinkCount,rightAdCount,isInBlock){

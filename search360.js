@@ -75,7 +75,7 @@ search360.prototype.process = function(data,args){
     console.log("%s,%s,%s",args[0],leftCount,rightCount);
     setTimeout(function(){
 	that.wget();
-    },1000);
+    },800);
 }
 
 var instance = new search360();
