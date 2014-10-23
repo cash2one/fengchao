@@ -107,14 +107,49 @@ exports.StringBuffer.prototype.removeLast = function(){
     var result = this.data.length>0 && this.data.splice(-1,1);
     return result;
 }
+exports.HttpCookie = Array;
 
+exports.HttpCookie.parse = function(data){
+    if(typeof data == "string"){
+	return qs.parse(data,";","=");
+    }
+}
+
+exports.HttpCookie.prototype.toString = function(){
+    return this.map(function(c){
+	return qs.stringify(c,",","=");
+    }).join(";");
+}
+
+exports.HttpCookie.prototype.add = function(cookie,val){
+    var ck = {};
+    if(cookie instanceof Array){
+	for(var i=0;i<cookie.length;i++){
+	    arguments.callee.call(this, cookie[i]);
+	}
+    }else if(cookie && typeof cookie == "string"){
+	ck[cookie] = val || "";
+	this.push(ck);
+    }else if(typeof cookie == "object"){
+	for(var k in cookie){
+	    if(cookie.hasOwnProperty(k))
+		var kk = k.trim();
+		if(kk!="path" && kk!="domain" && kk!="expires" && kk!="max-age"){
+		    ck[k]=cookie[k];
+	    }
+	}
+	this.push(ck);
+    }
+    
+}
+exports.CookieInstance = new exports.HttpCookie();
 
 exports.request_data=function(opts,data,fn,args){
     if(!opts || !fn) throw "argument null 'opt' or 'data'";
     var strData = data && JSON.stringify(data);
     if(opts.method=='POST')
         opts.headers['Content-Length']=Buffer.byteLength(strData,'utf8');
-
+    
     var req = http.request(opts, function(res) {
 	if (res.statusCode > 300 && res.statusCode < 400&& res.headers.location) {
 	    var urlObj = url.parse(res.headers.location);
