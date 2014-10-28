@@ -26,13 +26,15 @@ def search(word):
     try:
         driver.find_element_by_id("kw").clear()
         driver.find_element_by_id("kw").send_keys(word)
+        time.sleep(3)
         driver.find_element_by_id("su").click()
     except Exception as e:
         print "error click"
         pass
-    time.sleep(3)
+    
     i=0
     j=0
+    k=0
     regexp = re.compile(r'bdfs\d')
     elem = driver.find_element_by_xpath("//*")
     source_code = elem.get_attribute("outerHTML")
@@ -56,6 +58,7 @@ def search(word):
     #        break
     if j==0:
         print "in gray box"
+        k=1
         try:
             elems = driver.find_elements_by_css_selector("#content_left > table")
             j=len(elems)/2
@@ -66,43 +69,57 @@ def search(word):
         #arrLeft = regexp.findall(source_code)
         #j == len(arrLeft)/2
         #print j
-
+    m=0
+    try:
+        borders = driver.find_elements_by_css_selector(".c-border")
+        m = len(borders)
+    except Exception as e:
+        pass
+    if m > 0:
+        m=1
     f = codecs.open('./result/baidu.txt','a','utf8')
-    f.write(words[word]+","+str(j)+","+str(i)+"\n")
+    f.write(words[word]+","+str(j)+","+str(i)+","+str(k)+","+str(m)+"\n")
     f.close()
-    print "%s: %d,%d" %(word,j,i)
-dc=DesiredCapabilities.HTMLUNIT
-test_host =
-test_port = 
-server_url = "http://%s:%s/wd/hub" % (test_host, test_port)
-#driver = webdriver.Firefox()
-driver = webdriver.Remote(
+    print "%s: %d,%d,%d,%d" %(word,j,i,k,m)
+#dc=DesiredCapabilities.HTMLUNIT
+#test_host =
+#test_port = 
+#server_url = "http://%s:%s/wd/hub" % (test_host, test_port)
+driver = webdriver.Firefox()
+#driver = webdriver.Remote(
 words = {}
+wordlist = []
 def main():
-    doneItems = codecs.open("./result/baidu.txt",'r','utf8').readlines()
+    path = "./result/baidu.txt"
+    if os.path.exists(path):
+        doneItems = codecs.open(path,'r','utf8').readlines()
+    else:
+        doneItems = []
     print len(doneItems)
     done = {}
     for item in doneItems:
         word = item.split(',')[0]
         done[word]=True
     
-    lines = codecs.open('./Keywords_2014_10_16.txt', 'r', 'utf8').readlines()
+    lines = codecs.open('./5755.txt', 'r', 'utf8').readlines()
     print len(lines)
     
     for line in lines:
         line = line.replace('\r','').replace('\n','')
         word = line.split(",")[0]
+        words[word] = line
+
         try:
             x=done[word]
         except KeyError as e:
-            words[word] = line
+            wordlist.append(word)
         pass
     
     driver.get("http://www.baidu.com");
-    time.sleep(20)
-    for (d,x) in words.items():
-        search(d)
-        time.sleep(6)
+    time.sleep(60)
+    for w in wordlist:
+        search(w)
+        time.sleep(5)
         
 if __name__ == '__main__':
     print "start"
