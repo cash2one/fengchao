@@ -26,12 +26,11 @@ def search(word):
     try:
         driver.find_element_by_id("kw").clear()
         driver.find_element_by_id("kw").send_keys(word)
-        time.sleep(3)
         driver.find_element_by_id("su").click()
     except Exception as e:
         print "error click"
         pass
-    
+    time.sleep(3)    
     i=0
     j=0
     k=0
@@ -119,7 +118,7 @@ def main():
     time.sleep(60)
     for w in wordlist:
         search(w)
-        time.sleep(5)
+        time.sleep(4)
         
 if __name__ == '__main__':
     print "start"
