@@ -5,7 +5,7 @@ var cheerio = require("cheerio");
 var searchSogou = function(){
     this.resultDir = "result/";
     this.resultFile = "linkcount.sogou.txt";
-    this.keywordFile = "Keywords_2014_10_16.txt";
+    this.keywordFile = "5755.txt";
     this.done = {};
 }
 
@@ -38,6 +38,12 @@ searchSogou.prototype.init = function(){
 	    return line.replace('\r','').split(",")[0];
 	});
     }
+    
+    var arguments = process.argv.splice(2);
+    var start = Number(arguments[0]||0);
+    var len = Number(arguments[1]||this.words.length);
+    this.words = this.words.slice(start,start+len);
+
     console.log("total keywords: %d",this.words.length);
 }
 
@@ -85,7 +91,7 @@ searchSogou.prototype.process = function(data,args){
     console.log("%s,%s,%s",args[0],leftCount,rightCount);
     setTimeout(function(){
 	that.wget();
-    },20000);
+    },15000);
 }
 
 var instance = new searchSogou();
