@@ -10,14 +10,14 @@ var searchSogou = function(){
 }
 
 searchSogou.prototype.init = function(){
-    var startIdx,len,doneCount=0;
+    var startIdx,len;
     var args = process.argv.slice(2);
     if(args.length>0){
 	this.keywordFile = args[0];
     }
     if(args.length > 1){
-	startIdx = args[1];
-	len = args[2];
+	startIdx = Number(args[1]);
+	len = Number(args[2]);
     }
     if(fs.existsSync(this.resultDir+this.resultFile)){
 	fs.readFileSync(this.resultDir+this.resultFile).toString().split("\r\n").reduce(function(prev,cur){
@@ -27,7 +27,7 @@ searchSogou.prototype.init = function(){
     }
     if(fs.existsSync(this.keywordFile)){
 	this.words = fs.readFileSync(this.keywordFile).toString().split("\n").filter(function(line,idx){
-	    if(idx<startIdx || idx>=len+startIdx)
+	    if(idx<startIdx || len+startIdx<=idx)
 		return false;
 	    if(!line||line=='\r'||line=='\n'){
 		return false;
@@ -90,7 +90,7 @@ searchSogou.prototype.process = function(data,args){
     console.log("%s,%s,%s",args[0],leftCount,rightCount);
     setTimeout(function(){
 	that.wget();
-    },200);
+    },8000);
 }
 
 var instance = new searchSogou();

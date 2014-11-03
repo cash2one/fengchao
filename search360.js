@@ -58,9 +58,9 @@ var cheerio = require("cheerio");
      var query = {src:"srp",fr:"know_side_nlp",q:encoded,pq:encoded,psid:"06adde55e7af04e908ccb45d9168e444"};
      
      var opt  =new helper.basic_options('www.so.com','/s','GET',false,false,query);
-     console.log("[GET ] %s",word);
-     helper.request_data(opt,null,function(data,args){
-	 that.process(data,args);
+     console.log("[GET ] %s,%s",word,opt.path);
+     helper.request_data(opt,null,function(data,args,res){
+	 that.process(data,args,res);
      },word);
  }
 
@@ -73,7 +73,7 @@ search360.prototype.process = function(data,args,res){
 	return;
     }
     if(data.indexOf("360搜索_访问异常出错")>-1){
-	console.log("请输入验证码, %s",res.url);
+	console.log("请输入验证码，%s",res.url);
 	return;
     }
     var $ = cheerio.load(data);

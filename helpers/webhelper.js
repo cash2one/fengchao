@@ -160,27 +160,27 @@ exports.request_data=function(opts,data,fn,args){
 	    console.log("Redirecting to "+res.headers.location);
 	    //exports.request_data(res.headers.location,data,fn,args);
 	    if(args==undefined){
-		fn(null,[data,"redirect"]);
+		fn(null,[data,"redirect"],res);
 	    }
 	    else if(Array.isArray(args)){
 		args.push(opts.data||data);
 		args.push("redirect");
-		fn(null,args);
+		fn(null,args,res);
 	    }else{
-		fn(null,[args,opts.data||data,"redirect"]);
+		fn(null,[args,opts.data||data,"redirect"],res);
 	    }
 	}
         else {
 	    req.abort();
 	    console.log("do not handle https.");
 	    if(args==undefined){
-		fn(null,[data]);
+		fn(null,[data],res);
 	    }
 	    else if(Array.isArray(args)){
 		args.push(opts.data||data);
-		fn(null,args);
+		fn(null,args,res);
 	    }else{
-		fn(null,[args,opts.data||data]);
+		fn(null,[args,opts.data||data],res);
 	    }
         }
     }
@@ -231,7 +231,7 @@ exports.request_data=function(opts,data,fn,args){
 			if(res.headers['content-type'].indexOf('application/json')!=-1)
 			    obj =JSON.parse(decoded.toString());
 			if(args==undefined){
-			    fn(obj,[data]);
+			    fn(obj,[data],res);
 			}
 			else if(Array.isArray(args)){
 			    args.push(opts.data||data);
@@ -289,13 +289,13 @@ exports.request_data=function(opts,data,fn,args){
     req.setTimeout(50000,function(){
 	req.abort();
 	if(args==undefined){
-	    fn(null,[opts.data]);
+	    fn(null,[opts.data],res);
         }
         else if(Array.isArray(args)){
 	    args.push(opts.data||data);
-	    fn(null,args);
+	    fn(null,args,res);
         }else{
-	    fn(null,[args,opts.data||data]);
+	    fn(null,[args,opts.data||data],res);
         }
     });
     
@@ -317,13 +317,13 @@ exports.request_data=function(opts,data,fn,args){
                 //retry
         //exports.request_data(opts,data,fn,args);
 	if(args==undefined){
-	    fn(null,[opts.data]);
+	    fn(null,[opts.data],res);
         }
         else if(Array.isArray(args)){
 	    args.push(opts.data||data);
-	    fn(null,args);
+	    fn(null,args,res);
         }else{
-	    fn(null,[args,opts.data||data]);
+	    fn(null,[args,opts.data||data],res);
         }
     });
     if(opts.method=='POST')
