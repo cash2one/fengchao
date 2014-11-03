@@ -39,11 +39,6 @@ searchSogou.prototype.init = function(){
 	});
     }
     
-    var arguments = process.argv.splice(2);
-    var start = Number(arguments[0]||0);
-    var len = Number(arguments[1]||this.words.length);
-    this.words = this.words.slice(start,start+len);
-
     console.log("total keywords: %d",this.words.length);
 }
 
