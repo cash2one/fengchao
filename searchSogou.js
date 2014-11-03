@@ -61,6 +61,7 @@ searchSogou.prototype.wget = function(){
     var query = {query:encoded,ie:"utf8",_ast:1403943296,_asf:null,w:01029901,p:40040100,dp:1};
     
     var opt  =new helper.basic_options('www.sogou.com','/web','GET',false,false,query);
+    opt.agent = false;
     helper.request_data(opt,null,function(data,args){
 	that.process(data,args);
     },word);
