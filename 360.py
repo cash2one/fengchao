@@ -25,62 +25,30 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 def search(word):
     try:
-        driver.find_element_by_id("kw").clear()
-        driver.find_element_by_id("kw").send_keys(word)
+        driver.find_element_by_id("keyword").clear()
+        driver.find_element_by_id("keyword").send_keys(word)
         driver.find_element_by_id("su").click()
     except Exception as e:
         print "error click"
         pass
-    time.sleep(random.randint(1, 4))
-    i=0
-    j=0
-    k=0
-    regexp = re.compile(r'bdfs\d')
+    time.sleep(random.randint(1, 1))
     elem = driver.find_element_by_xpath("//*")
     source_code = elem.get_attribute("outerHTML")
-    arrRight = regexp.findall(source_code)
-    i= len(arrRight) / 2
-    #for i in range(0,9):
-    #    try:
-    #        driver.find_element_by_id("bdfs"+str(i))
-    #    except Exception as e:
-    #        #print "error detact right ad"
-    #        break
-    regexp = re.compile(r'[\"|\']300\d[\"\']')
-    arrLeft = regexp.findall(source_code)
-    j = len(arrLeft)/2
-    #print i;
-    #for j in range(0,9):
-    #    try:
-    #        driver.find_element_by_id("300"+str(j))
-    #    except Exception as e:
-            #print "error detact left ad"
-    #        break
-    if j==0:
-        print "in gray box"
-        k=1
-        try:
-            elems = driver.find_elements_by_css_selector("#content_left > table")
-            j=len(elems)/2
-        except Exception as e:
-            print "error detact left ad"
-        #regexp = re.compile(r'[\"|\']400\d[\"\']')
-        #regexp = re.compile(r'<table.*?<\/table>(?=<br\/>)')
-        #arrLeft = regexp.findall(source_code)
-        #j == len(arrLeft)/2
-        #print j
-    m=0
+    leftCount = 0
+    rightCount = 0
     try:
-        borders = driver.find_elements_by_css_selector(".c-border")
-        m = len(borders)
+        leftCount = len(driver.find_elements_by_css_selector("#m-spread-left ul li"))
     except Exception as e:
         pass
-    if m > 0:
-        m=1
-    f = codecs.open('./result/baidu.txt','a','utf8')
-    f.write(words[word]+","+str(j)+","+str(i)+","+str(k)+","+str(m)+"\n")
+    try:
+        rightCount = len(driver.find_elements_by_css_selector("#rightbox li"))
+    except Exception as e:
+        pass
+    
+    f = codecs.open('./result/360.txt','a','utf8')
+    f.write(words[word]+","+str(leftCount)+","+str(rightCount)+"\n")
     f.close()
-    print "%s: %d,%d,%d,%d" %(word,j,i,k,m)
+    print "%s: %d,%d" %(word,leftCount,rightCount)
 #dc=DesiredCapabilities.HTMLUNIT
 #test_host =
 #test_port = 
@@ -90,7 +58,7 @@ driver = webdriver.Firefox()
 words = {}
 wordlist = []
 def main():
-    path = "./result/baidu.txt"
+    path = "./result/360.txt"
     if os.path.exists(path):
         doneItems = codecs.open(path,'r','utf8').readlines()
     else:
@@ -115,11 +83,11 @@ def main():
             wordlist.append(word)
         pass
     
-    driver.get("http://www.baidu.com");
+    driver.get("http://www.so.com/s?q=hehe");
     time.sleep(2)
     for w in wordlist:
-        search(w)        
-        time.sleep(random.randint(5, 12))
+        search(w)
+        time.sleep(random.randint(2,5))
         
 if __name__ == '__main__':
     print "start"
