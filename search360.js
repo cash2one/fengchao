@@ -10,6 +10,10 @@ var cheerio = require("cheerio");
  }
 
  search360.prototype.init = function(){
+     var arguments = process.argv.splice(2);
+     var start = Number(arguments[0]||0);
+     var len = Number(arguments[1]||this.words.length);
+     
      if(fs.existsSync(this.resultDir+this.resultFile)){
 	 fs.readFileSync(this.resultDir+this.resultFile).toString().split("\r\n").reduce(function(prev,cur){
 	     prev[cur.split(',')[0]]=true;
@@ -17,7 +21,10 @@ var cheerio = require("cheerio");
 	 },this.done);
      }
      if(fs.existsSync(this.keywordFile)){
-	 this.words = fs.readFileSync(this.keywordFile).toString().split("\n").filter(function(line){
+	 this.words = fs.readFileSync(this.keywordFile).toString().split("\n").filter(function(line,idx){
+	     if(idx<start || start+len<=idx){
+		 return false;
+	     }
 	     if(!line||line=='\r'||line=='\n'){
 		 return false;
 	     }
@@ -27,11 +34,8 @@ var cheerio = require("cheerio");
 	     return line.replace('\r','').split(',')[0];
 	 });
      }
-     var arguments = process.argv.splice(2);
-     var start = Number(arguments[0]||0);
-     var len = Number(arguments[1]||this.words.length);
 
-     this.words = this.words.slice(start,start+len);
+     //this.words = this.words.slice(start,start+len);
      console.log("total keywords: %d",this.words.length);
  }
 
@@ -52,23 +56,24 @@ var cheerio = require("cheerio");
 
      var encoded = encodeURIComponent(word);
      var query = {src:"srp",fr:"know_side_nlp",q:encoded,pq:encoded,psid:"06adde55e7af04e908ccb45d9168e444"};
-
+     
      var opt  =new helper.basic_options('www.so.com','/s','GET',false,false,query);
+     console.log("[GET ] %s",word);
      helper.request_data(opt,null,function(data,args){
 	 that.process(data,args);
      },word);
  }
 
-search360.prototype.process = function(data,args){
+search360.prototype.process = function(data,args,res){
     if(!data){
 	console.log("data empty");
-	//setTimeout(function(){
-	//    that.wget();
-	//},2000);
+	setTimeout(function(){
+	    that.wget();
+	},2000);
 	return;
     }
     if(data.indexOf("360搜索_访问异常出错")>-1){
-	console.log("请输入验证码");
+	console.log("请输入验证码, %s",res.url);
 	return;
     }
     var $ = cheerio.load(data);
@@ -76,10 +81,10 @@ search360.prototype.process = function(data,args){
     var rightCount = $("#rightbox li").length;
     var result = [args[0],leftCount,rightCount,"\r\n"];
     fs.appendFile(this.resultDir+this.resultFile,result.join());
-    console.log("%s,%s,%s",args[0],leftCount,rightCount);
+    console.log("[DATA] %s,%s,%s",args[0],leftCount,rightCount);
     setTimeout(function(){
 	that.wget();
-    },800);
+    },200);
 }
 
 var instance = new search360();

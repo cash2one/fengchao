@@ -27,7 +27,7 @@ searchSogou.prototype.init = function(){
     }
     if(fs.existsSync(this.keywordFile)){
 	this.words = fs.readFileSync(this.keywordFile).toString().split("\n").filter(function(line,idx){
-	    if(idx<startIdx || idx>=len)
+	    if(idx<startIdx || idx>=len+startIdx)
 		return false;
 	    if(!line||line=='\r'||line=='\n'){
 		return false;
@@ -70,6 +70,9 @@ searchSogou.prototype.wget = function(){
 searchSogou.prototype.process = function(data,args){
     if(!data){
 	console.log("data empty");
+	setTimeout(function(){
+	    that.wget();
+	},2000);
 	return;
     }
     
@@ -87,7 +90,7 @@ searchSogou.prototype.process = function(data,args){
     console.log("%s,%s,%s",args[0],leftCount,rightCount);
     setTimeout(function(){
 	that.wget();
-    },15000);
+    },200);
 }
 
 var instance = new searchSogou();

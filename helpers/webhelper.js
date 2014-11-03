@@ -25,7 +25,7 @@ exports.basic_options=function(host,path,method,isApp,isAjax,data,port){
         // "Accept":"text/html,application/xhtml+xml,application/xml,application/json, text/javascript, */*; q=0.01",
         // "Accept-Encoding":"gzip, deflate",
         "Accept-Language":"zh-CN,zh;q=0.8,en;q=0.6",
-        // "X_FORWARDED_FOR":"58.99.128.66"
+        "X_FORWARDED_FOR":"58.99.128.66"
     };
     //there are some problems in below code.
     if(method=="POST")
@@ -48,8 +48,10 @@ exports.basic_options=function(host,path,method,isApp,isAjax,data,port){
     if(isApp){
 	this.headers['User-Agent']= 'Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch)';
     }
-    else
-	this.headers['User-Agent'] = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36";
+    else{
+	var uagents = ["Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36"];
+	this.headers['User-Agent'] = uagents[1];
+    }
     if(isAjax)
 	this.headers["X-Requested-With"]="XMLHttpRequest";
 };
@@ -203,13 +205,13 @@ exports.request_data=function(opts,data,fn,args){
 			    obj =JSON.parse(decoded.toString());
 			}
 			if(args==undefined){
-			    fn(obj,[data]);
+			    fn(obj,[data],res);
 			}
 			else if(Array.isArray(args)){
 			    args.push(opts.data||data);
-			    fn(obj,args);
+			    fn(obj,args,res);
 			}else{
-			    fn(obj,[args,opts.data||data]);
+			    fn(obj,[args,opts.data||data],res);
 			}
 			
 		    }
@@ -233,9 +235,9 @@ exports.request_data=function(opts,data,fn,args){
 			}
 			else if(Array.isArray(args)){
 			    args.push(opts.data||data);
-			    fn(obj,args);
+			    fn(obj,args,res);
 			}else{
-			    fn(obj,[args,opts.data||data]);
+			    fn(obj,[args,opts.data||data],res);
 			}
 		    }
 		    catch(e){
@@ -272,19 +274,19 @@ exports.request_data=function(opts,data,fn,args){
 		}
             }
             if(args==undefined){
-		fn(obj,[opts.data]);
+		fn(obj,[opts.data],res);
             }
             else if(Array.isArray(args)){
 		args.push(opts.data||data);
-		fn(obj,args);
+		fn(obj,args,res);
             }else{
-		fn(obj,[args,opts.data||data]);
+		fn(obj,[args,opts.data||data],res);
             }
 	}
     });
     });
     
-    req.setTimeout(5000,function(){
+    req.setTimeout(50000,function(){
 	req.abort();
 	if(args==undefined){
 	    fn(null,[opts.data]);
