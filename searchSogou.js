@@ -90,7 +90,7 @@ searchSogou.prototype.process = function(data,args){
     console.log("%s,%s,%s",args[0],leftCount,rightCount);
     setTimeout(function(){
 	that.wget();
-    },8000);
+    },2000);
 }
 
 var instance = new searchSogou();
