@@ -72,7 +72,7 @@ searchSogou.prototype.process = function(data,args){
 	console.log("data empty");
 	setTimeout(function(){
 	    that.wget();
-	},2000);
+	},3000);
 	return;
     }
     
@@ -90,7 +90,7 @@ searchSogou.prototype.process = function(data,args){
     console.log("%s,%s,%s",args[0],leftCount,rightCount);
     setTimeout(function(){
 	that.wget();
-    },2000);
+    },30000);
 }
 
 var instance = new searchSogou();
